@@ -16,7 +16,7 @@ from django.views import View
 from board.models import News
 
 class NewsView(View):
-    def get(self, request, perPage=12):
+    def get(self, request, perPage=8):
         form = request.GET.dict()
         query = ''
 
