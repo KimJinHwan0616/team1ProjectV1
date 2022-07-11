@@ -15,7 +15,6 @@ from django.views import View
 
 from board.models import News
 
-
 class NewsView(View):
     def get(self, request, perPage=12):
         form = request.GET.dict()
@@ -61,9 +60,9 @@ class AnnounceView(View):
         if request.GET.get('key') is not None and request.GET.get('type') is not None:
 
             if form['type'] == 'title':
-                announce_table = Announce.objects.select_related().filter(title__contains=form['key'])
+                announce_table = News.objects.select_related().filter(title__contains=form['key'])
             elif form['type'] == 'content':
-                announce_table = Announce.objects.select_related().filter(contents__contains=form['key'])
+                announce_table = News.objects.select_related().filter(contents__contains=form['key'])
 
             query = urlencode({'type': form['type'], 'key': form['key']})
 
@@ -118,38 +117,7 @@ class TeamplayerView(View):
     def post(self, request):
         pass
 
-
-class DetailView(View):
-    def get(self, request):
-        form = request.GET.dict()
-
-        News.objects.filter(id=form['no'], category__contains='notice').update(view=F('view') + 1)      # 조회수 증가
-
-        announce_table = News.objects.select_related().filter(category__contains='notice').get(id=form['no'])
-
-        context = {'announce_table': announce_table}
-
-        return render(request, 'board/detail.html', context)
-
-    def post(self, request):
-        pass
-
-
-class Detail2View(View):
-    def get(self, request):
-        form = request.GET.dict()
-
-        News.objects.filter(id=form['no'], category__contains='club').update(view=F('view') + 1)      # 조회수 증가
-
-        teamplayer_table = News.objects.select_related().filter(category__contains='club').get(id=form['no'])
-
-        context = {'teamplayer_table': teamplayer_table}
-
-        return render(request, 'board/detail2.html', context)
-
-    def post(self, request):
-        pass
-
+##
 
 class News_detailView(View):
     def get(self, request):
@@ -161,3 +129,33 @@ class News_detailView(View):
 
         context = {'nt': news_table}
         return render(request, 'board/news_detail.html', context)
+
+class Announce_detailView(View):
+    def get(self, request):
+        form = request.GET.dict()
+
+        News.objects.filter(id=form['no'], category__contains='notice').update(view=F('view') + 1)      # 조회수 증가
+
+        announce_table = News.objects.select_related().filter(category__contains='notice').get(id=form['no'])
+
+        context = {'announce_table': announce_table}
+
+        return render(request, 'board/announce_detail.html', context)
+
+    def post(self, request):
+        pass
+
+class Teamplayer_detailView(View):
+    def get(self, request):
+        form = request.GET.dict()
+
+        News.objects.filter(id=form['no'], category__contains='club').update(view=F('view') + 1)      # 조회수 증가
+
+        teamplayer_table = News.objects.select_related().filter(category__contains='club').get(id=form['no'])
+
+        context = {'teamplayer_table': teamplayer_table}
+
+        return render(request, 'board/teamplayer_detail.html', context)
+
+    def post(self, request):
+        pass

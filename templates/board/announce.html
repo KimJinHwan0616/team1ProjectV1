@@ -69,7 +69,7 @@
                 <tr>
                     <td>{{ a.id }}</td>
 {#                    <td>{{ a.title }}</td>  <!-- 링크 걸기 -->#}
-                    <td style="text-align: left"><a href="{% url 'detail' %}?no={{ a.id }}">
+                    <td style="text-align: left"><a href="{% url 'announce_detail' %}?no={{ a.id }}">
                         <span style="color:white; background-color: black"; >　NOTICE　</span>　
                         {{ a.title }}</a></td>  <!-- 링크 걸기 -->
                     <td>{{ a.regdate }}</td>
