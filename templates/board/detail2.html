@@ -1,0 +1,66 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+
+{% block title %}{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static '/css/vendor/style.css' %}">
+{% endblock %}
+
+{% block contents %}
+
+<div class="sub-top">
+	<h2 class="campton m-4">뉴스</h2>
+	<p class="m-4">K리그1・2의 최신 소식을 모두 확인 할 수 있는 공간입니다.</p>
+</div>      <!-- 뉴스 -->
+
+<div class="sub-contents-wrap">     <!-- 본문 -->
+
+    <div class="contents">  <!-- 본문 -->
+
+{#    <input type="hidden" name="search" value="">#}
+{#    <input type="hidden" name="category" value="notice">#}
+{#    <input type="hidden" name="orderBy" value="seq">#}
+{#    <input type="hidden" name="viewOption" value="list">#}
+
+        <h3 class="board-tit f-wrap">
+            <span class="left str">{{ teamplayer_table.title }}</span>
+        </h3>   <!-- 제목 -->
+
+        <div class="board-box">
+
+            <div class="board-top f-wrap">  <!-- notice, 날짜, 조회수 -->
+                <span class="txt-secondary">club</span>
+                <span class="views roboto">{{ teamplayer_table.regdate|date:'Y-m-d'}} &nbsp; I &nbsp; 조회수 {{ teamplayer_table.view }}</span>
+            </div>  <!-- notice, 날짜, 조회수 -->
+
+            <div class="board-con">
+                <p style="font-size: 12pt;">{{ teamplayer_table.content }}</p>     <!-- 공간 & 본문 -->
+            </div>      <!-- 본문 -->
+
+            <div class="board-bottom">  <!-- 이전글, 목록, 다음글 -->
+
+                <a href="#">
+                    <button class="btn btn-sm btn-prev btn-primary">＞</button>
+                </a>   <!-- 이전글 -->
+
+                <a href="#">
+                    <button class="btn btn-sm btn-primary">목록</button>
+                </a>    <!-- 목록 -->
+
+                <a href="#">
+                    <button class="btn btn-sm btn-next btn-primary">＞</button>
+                </a>    <!-- 다음글 -->
+
+            </div>  <!-- 이전글, 목록, 다음글 -->
+
+        </div>
+
+    </div>  <!-- 본문 -->
+
+</div>  <!-- 본문 -->
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

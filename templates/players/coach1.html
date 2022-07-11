@@ -1,0 +1,83 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block style %}{% endblock %}
+
+{% block contents %}
+    <div class="container outer-div">
+        <div class="select-box inner-div mt-3" style="margin:auto">
+            <label>구단</label>
+                    <select id="clubList">
+
+                            <option value="" selected>전체</option>
+
+                                <option value="K01">FC서울</option>
+
+                                <option value="K02">강원FC</option>
+
+                                <option value="K03">김천 상무</option>
+
+                                <option value="K04">대구FC</option>
+
+                                <option value="K05">성남FC</option>
+
+                                <option value="K06">수원 삼성</option>
+
+                                <option value="K07">수원FC</option>
+
+                                <option value="K08">울산 현대</option>
+
+                                <option value="K09">인천 Utd</option>
+
+                                <option value="K10">전북 현대</option>
+
+                                <option value="K11">제주 Utd</option>
+
+                                <option value="K12">포항 스틸러스</option>
+                    </select>
+        </div>
+
+        <div class="sessionclub col mt-3" id="sessionlocation">
+            <h2 class="title">프로</h2>
+            <ul class="location col-13 text-end">
+                <span>Home</span>
+                <span>&nbsp;>&nbsp;</span>
+                <span>선수단 정보</span>
+                <span>&nbsp;>&nbsp;</span>
+                <span>프로</span>
+            </ul>
+        </div>
+
+        <div class="container">
+            <h3 class="text-center">GK</h3>
+            <ul class="player_box w-100"></ul>
+            <div style="border: 1px solid white; width:182px">
+            <span><img style="width: 500px; height: 400px;" src="/static/imgs123/{{ s.team }}/{{ name }}.jpg"></span>
+                <div>{{ s.number }}{{ s.name }}</div>
+            </div>
+
+            <h3 class="text-center">DF</h3>
+            <ul class="player_box"></ul>
+                <span><img src="/static/imgs123/전북_이용.jpg" style="height:300px; width:300px"></span>
+
+
+            <h3 class="text-center">MF</h3>
+            <ul class="player_box"></ul>
+
+                <span><img src="/static/imgs123/전북_박진섭.jpg" style="height:300px; width:300px"></span>
+
+            <h3 class="text-center">FW</h3>
+            <ul class="player_box"></ul>
+
+                <span><img src="/static/imgs123/전북_구스타보.jpg" style="height:300px; width:300px"></span>
+
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+
+{% endblock %}

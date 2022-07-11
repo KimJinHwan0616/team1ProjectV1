@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>경기장 테스트 페이지</title>
+    <style>
+        ul { list-style: none; padding: 0;}
+        ul li { border: 1px solid blue; width: 300px; height: 100px; font-weight: bold; font-size: 30px;}
+        #info { display: flex; justify-content: center }
+        #main { text-align: center; border: 1px solid red; align-content: center; justify-content: center; vertical-align: center;}
+        #map1 { width: 600px; margin: 0 auto;}
+    </style>
+</head>
+<body>
+
+    <div id="main">
+        <select>
+            <option></option>
+        </select>
+
+        <img style="width: 500px; height: 400px;" src="/static/imgs/stadiums/{{ addrkey }}.jpg"></img>
+
+
+
+        <div id="info">
+            <ul>
+                <li>경기장 이름</li>
+                <li>개장일</li>
+                <li>홈 구단</li>
+                <li>수용인원</li>
+                <li>위치</li>
+            </ul>
+            <ul>
+                <li>{{ stname }}</li>
+                <li>{{ opdate }}</li>
+                <li>{{ hteam }}</li>
+                <li>{{ accnum }}</li>
+                <li>{{ addr }}</li>
+            </ul>
+        </div>
+        <div id="map1">
+            <div id="daumRoughmapContainer{{ addrstmp }}" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+            <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+            <script charset="UTF-8">
+                new daum.roughmap.Lander({
+                    "timestamp" : "{{ addrstmp }}",
+                    "key" : "{{ addrkey }}",
+                    "mapWidth" : "600",
+                    "mapHeight" : "300"
+                }).render();
+            </script>
+        </div>
+    </div>
+</body>
+
+
+
+</html>

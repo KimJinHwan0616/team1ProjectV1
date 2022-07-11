@@ -1,0 +1,110 @@
+/* 일부 li의 list-style 제거 */
+.nonlis {list-style: none;}
+
+/* 헤더 css(임시?) */
+.black0 {
+    height:90px;
+    background: black;
+    color:white;
+}
+
+/* 로그인/회원가입/사이트맵 */
+.logform li {
+    padding-right:30px;
+}
+.logform li a {
+    text-decoration: none;
+    color:white;
+}
+
+.nav-link{color:white;}
+.nav-link:hover {background: white; color:black;}
+
+/* 드롭다운 메뉴 크기 및 숨김 /
+    position:absolute와 left:0으로 드롭다운 메뉴 밀림 현상 해결 */
+.dropdown_menu1 {
+    display:none;
+    position:absolute;
+    left:0;
+    background: white;
+    width:100%;
+    height:350px;
+    margin-left: 0;
+}
+
+/* 상위메뉴 hover => 드롭다운 메뉴 표시 */
+.dropdown > li:hover .dropdown_menu1 {
+    display:grid;
+    align-items: center;}
+
+/*네비바 메뉴 hover시*/
+.dropdown_menu1:hover> .nav-link{
+    background: white;
+    color:black;}
+
+/* 드롭다운 서브메뉴 사이즈 / border는 배치 끝나면 지움 */
+.nonlis .container{
+    border:1px solid red;
+    display:inline-block;
+    height:300px;
+}
+.dropdown_menu1 li {
+    margin-right:15px;
+    margin-left:15px;
+}
+
+/* 드롭메뉴 메뉴이름 css */
+.sub_menu h3{
+    text-align: start;
+    font-size:40px;
+    font-weight: bold;
+    }
+
+/* 드롭메뉴 서브메뉴들 css */
+.sub_menu li {
+    list-style: disc;
+    text-align: left;
+    padding-left: 0;
+    margin-left: 0;
+}
+.sub_menu li a i{
+    float:right;
+}
+.sub_menu li a{
+    text-decoration: none;
+    color:black;
+}
+
+/* 드롭메뉴 서브메뉴들 hover */
+.sub_menu li:hover{
+    color:red;
+}
+.sub_menu li a:hover{
+    color:red;
+}
+.sub_menu li a i:hover{
+    color:red;
+}
+
+/* 드롭메뉴 서브메뉴들 사이 선들 */
+.line1{
+    border:0;
+    height:2px;
+    width:300px;
+    background:#000000;
+}
+.line2{
+    display:flex;
+    width:270px;
+}
+
+
+/* 메인색 임시 */
+#main {
+    background: #e3e3e3;
+}
+
+footer {
+    background: #292f3d;
+    height:200px;
+}
