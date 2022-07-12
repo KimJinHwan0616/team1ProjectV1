@@ -4,7 +4,7 @@
 
 {% block title %}{% endblock %}
 {% block style %}
-    <link rel="stylesheet" href="{% static '/css/vendor/style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/vendor/board_style.css' %}">
 {% endblock %}
 
 {% block contents %}
@@ -31,7 +31,7 @@
 
             <div class="board-top f-wrap">  <!-- notice, 날짜, 조회수 -->
                 <span class="txt-secondary">club</span>
-                <span class="views roboto">{{ teamplayer_table.regdate|date:'Y-m-d'}} &nbsp; I &nbsp; 조회수 {{ teamplayer_table.view }}</span>
+                <span class="views roboto">{{ teamplayer_table.regdate }} &nbsp; I &nbsp; 조회수 {{ teamplayer_table.view }}</span>
             </div>  <!-- notice, 날짜, 조회수 -->
 
             <div class="board-con">

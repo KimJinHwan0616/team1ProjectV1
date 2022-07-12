@@ -20,16 +20,16 @@ class NewsView(View):
         form = request.GET.dict()
         query = ''
 
-        if request.GET.get('key') is not None and request.GET.get('type') is not None:
+        if request.GET.get('keyword') is not None and request.GET.get('type') is not None:
 
             if form['type'] == 'title':
                 news_table = News.objects.select_related().\
-                    filter(title__contains=form['key'])
+                    filter(title__contains=form['keyword'])
             elif form['type'] == 'content':
                 news_table = News.objects.select_related().\
-                    filter(content__contains=form['key'])
+                    filter(content__contains=form['keyword'])
 
-            query = urlencode({'type': form['type'], 'key': form['key']})
+            query = urlencode({'type': form['type'], 'keyword': form['keyword']})
 
         else:
             news_table = News.objects.select_related()  #
@@ -46,7 +46,7 @@ class NewsView(View):
         news_table = news_table[start:end]
         listPage = int((int(page) - 1) / 10) * 10 + 1
 
-        context = {'nt': news_table, 'pages': pages, 'range': range(listPage, listPage + 10) }
+        context = {'nt': news_table, 'pages': pages, 'range': range(listPage, listPage + 10), 'query': query }
         return render(request, 'board/news.html', context)
 
     def post(self, request):
@@ -57,20 +57,20 @@ class AnnounceView(View):
         form = request.GET.dict()
         query = ''
 
-        if request.GET.get('key') is not None and request.GET.get('type') is not None:
+        if request.GET.get('keyword') is not None and request.GET.get('type') is not None:
 
             if form['type'] == 'title':
-                announce_table = News.objects.select_related().filter(title__contains=form['key'])
+                announce_table = News.objects.select_related().\
+                    filter(category__contains='notice', title__contains=form['keyword'])
             elif form['type'] == 'content':
-                announce_table = News.objects.select_related().filter(contents__contains=form['key'])
+                announce_table = News.objects.select_related().\
+                    filter(category__contains='notice', content__contains=form['keyword'])
 
-            query = urlencode({'type': form['type'], 'key': form['key']})
+            query = urlencode({'type': form['type'], 'keyword': form['keyword']})
 
         else:
             announce_table = News.objects.select_related().filter(category__contains='notice')
             # announce_table = News.objects.select_related()
-
-
 
         pages = ceil ( announce_table.count() / perPage )
 
@@ -96,7 +96,19 @@ class TeamplayerView(View):
         form = request.GET.dict()
         query = ''
 
-        teamplayer_table = News.objects.select_related().filter(category__contains='club')
+        if request.GET.get('keyword') is not None and request.GET.get('type') is not None:
+
+            if form['type'] == 'title':
+                teamplayer_table = News.objects.select_related().\
+                    filter(category__contains='club', title__contains=form['keyword'])
+            elif form['type'] == 'content':
+                teamplayer_table = News.objects.select_related().\
+                    filter(category__contains='club', content__contains=form['keyword'])
+
+            query = urlencode({'type': form['type'], 'keyword': form['keyword']})
+
+        else:
+            teamplayer_table = News.objects.select_related().filter(category__contains='club')
 
         pages = ceil( teamplayer_table.count() / perPage )        # 전체 페이지 수
 

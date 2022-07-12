@@ -4,7 +4,7 @@
 {% block title %}{% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{% static '/css/vendor/style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/vendor/board_style.css' %}">
 {% endblock %}
 
 {% block contents %}
@@ -33,7 +33,7 @@
                     <option value="content">내   용</option>
             </select>&nbsp;
 
-            <input type="text" id="findkeyword" class="form-control w-50">&nbsp;
+            <input type="text" id="findkeyword" class="form-control w-50" placeholder="검색어를 입력하세요">&nbsp;
             <button type="button" id="findbtn" class="btn btn-light">
                         <i class="bi bi-search"></i></button>
 

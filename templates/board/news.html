@@ -4,7 +4,7 @@
 {% block title %}{% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{% static '/css/vendor/style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/vendor/board_style.css' %}">
 {% endblock %}
 
 {% block contents %}
@@ -28,21 +28,17 @@
 
         <div class="col-sm-5 d-flex flex-row sch-box">
 
-            <select id="findtype" class="form-select w-25">
+            <select id="findtype" name="findtype" class="form-select w-25">
                     <option value="title">제   목</option>
                     <option value="content">내   용</option>
             </select>&nbsp;
 
-            <input type="text" id="findkeyword" class="form-control w-50">&nbsp;
+            <input type="text" id="findkeyword" name="findkeyword"
+                   class="form-control w-50" placeholder="검색어를 입력하세요">&nbsp;
             <button type="button" id="findbtn" class="btn btn-light">
                         <i class="bi bi-search"></i></button>
 
         </div>
-
-{#        <div id="search-box">#}
-{#            <input type="text" id="search" name="search" placeholder="검색어를 입력해주세요" value=''>#}
-{#            <button id="search-btn" onclick="search();"><span>검색</span></button>#}
-{#        </div>  <!-- 검색창 -->#}
 
         <div class="table-wrap board-list list">   <!-- 표 -->
             <table>

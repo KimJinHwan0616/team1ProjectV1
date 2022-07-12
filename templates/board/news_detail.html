@@ -4,7 +4,7 @@
 
 {% block title %}{% endblock %}
 {% block style %}
-    <link rel="stylesheet" href="{% static '/css/vendor/style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/vendor/board_style.css' %}">
 {% endblock %}
 
 {% block contents %}
@@ -31,7 +31,7 @@
 
             <div class="board-top f-wrap">  <!-- notice, 날짜, 조회수 -->
                 <span class="txt-secondary">{{ nt.category }}</span>
-                <span class="views roboto">{{ nt.regdate|date:'Y-m-d'}} &nbsp; I &nbsp; 조회수 {{ nt.view }}</span>
+                <span class="views roboto">{{ nt.regdate }} &nbsp; I &nbsp; 조회수 {{ nt.view }}</span>
             </div>  <!-- notice, 날짜, 조회수 -->
 
             <div class="board-con">
@@ -41,15 +41,15 @@
             <div class="board-bottom">  <!-- 이전글, 목록, 다음글 -->
 
                 <a href="#">
-                    <button class="btn btn-sm btn-prev btn-primary">＞</button>
+                    <button class="btn btn-sm btn-prev btn-primary" id="prevbtn">＞</button>
                 </a>   <!-- 이전글 -->
 
                 <a href="#">
-                    <button class="btn btn-sm btn-primary">목록</button>
+                    <button class="btn btn-sm btn-primary" id="listbtn">목록</button>
                 </a>    <!-- 목록 -->
 
                 <a href="#">
-                    <button class="btn btn-sm btn-next btn-primary">＞</button>
+                    <button class="btn btn-sm btn-next btn-primary" id="nextbtn">＞</button>
                 </a>    <!-- 다음글 -->
 
             </div>  <!-- 이전글, 목록, 다음글 -->
@@ -63,4 +63,13 @@
 {% endblock %}
 
 {% block script %}
+{#<script>#}
+{#    const prevbtn = document.querySelector('#prevbtn');#}
+{##}
+{#    findbtn?.addEventListener('click', () => {#}
+{#        let qry = '?no='#}
+{#        location.href = '{% url 'news' %}'#}
+{#    });#}
+{##}
+{#</script>#}
 {% endblock %}
