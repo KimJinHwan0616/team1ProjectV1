@@ -1,7 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 
-
 {% block title %}{% endblock %}
 {% block style %}
     <link rel="stylesheet" href="{% static '/css/vendor/board_style.css' %}">
@@ -39,19 +38,17 @@
             </div>      <!-- 본문 -->
 
             <div class="board-bottom">  <!-- 이전글, 목록, 다음글 -->
-
-                <a href="#">
+                <a href="?no={{ prevno }}">
                     <button class="btn btn-sm btn-prev btn-primary" id="prevbtn">＞</button>
-                </a>   <!-- 이전글 -->
+                </a>
 
-                <a href="#">
-                    <button class="btn btn-sm btn-primary" id="listbtn">목록</button>
-                </a>    <!-- 목록 -->
+                <button class="btn btn-sm btn-primary" id="listbtn">목록</button>
 
-                <a href="#">
+{#                {% if nt.id != nextone %}   <!-- 마지막 글 - 다음 버튼 숨기기 -->#}
+                <a href="?no={{ nextno }}">
                     <button class="btn btn-sm btn-next btn-primary" id="nextbtn">＞</button>
-                </a>    <!-- 다음글 -->
-
+                </a>
+{#                {% endif %}     <!-- 다음 -->#}
             </div>  <!-- 이전글, 목록, 다음글 -->
 
         </div>
@@ -63,13 +60,23 @@
 {% endblock %}
 
 {% block script %}
-{#<script>#}
-{#    const prevbtn = document.querySelector('#prevbtn');#}
-{##}
-{#    findbtn?.addEventListener('click', () => {#}
-{#        let qry = '?no='#}
-{#        location.href = '{% url 'news' %}'#}
-{#    });#}
-{##}
-{#</script>#}
+<script>
+    const listbtn = document.querySelector('#listbtn');
+    const nextbtn = document.querySelector('#nextbtn');
+    const prevbtn = document.querySelector('#prevbtn');
+
+    listbtn.addEventListener('click', () => {
+        location.href = '{% url 'news' %}'
+    });
+
+    {#nextbtn.addEventListener('click', () => {#}
+    {#    num = parseInt( {{ nt.id }} + 1 )#}
+    {#    location.href = '{% url 'news_detail' %}?no=' + num#}
+    {#});#}
+    {##}
+    {#prevbtn.addEventListener('click', () => {#}
+    {#    num = parseInt( {{ nt.id }} - 1 )#}
+    {#    location.href = '{% url 'news_detail' %}?no=' + num#}
+    {#});#}
+</script>
 {% endblock %}

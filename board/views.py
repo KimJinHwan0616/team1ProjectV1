@@ -1,6 +1,6 @@
 from django.db.models import F
 from django.shortcuts import render
-from math import ceil
+from math import ceil, floor
 from urllib.parse import urlencode
 
 # def board(request):
@@ -139,7 +139,14 @@ class News_detailView(View):
 
         news_table = News.objects.select_related().get(id=form['no'])        #
 
-        context = {'nt': news_table}
+        nextone = News.objects.filter(id__gt=form['no'])[0].id
+
+        prevno = News.objects.filter(id__lt=form['no'])[0].id
+        nextno = News.objects.filter(id__gt=form['no']).order_by('id')[0].id
+
+        print(f'이전: {prevno}, 다음: {nextno}, 마지막: {nextone}')
+
+        context = {'nt': news_table, 'prevno': prevno, 'nextno': nextno, 'nextone': nextone}
         return render(request, 'board/news_detail.html', context)
 
 class Announce_detailView(View):
@@ -150,7 +157,10 @@ class Announce_detailView(View):
 
         announce_table = News.objects.select_related().filter(category__contains='notice').get(id=form['no'])
 
-        context = {'announce_table': announce_table}
+        nextone = News.objects.filter(category__contains='notice', id__gte=form['no'])[0]
+
+
+        context = {'at': announce_table, 'nextone': nextone}
 
         return render(request, 'board/announce_detail.html', context)
 
@@ -165,7 +175,11 @@ class Teamplayer_detailView(View):
 
         teamplayer_table = News.objects.select_related().filter(category__contains='club').get(id=form['no'])
 
-        context = {'teamplayer_table': teamplayer_table}
+        num1 = News.objects.select_related().filter(category__contains='club').order_by('-id')[0]      # 번호 역순 - 마지막번
+
+        num2 = News.objects.select_related().filter(category__contains='club').order_by('id')[0]       # 번호 순 - 1번
+
+        context = {'tt': teamplayer_table, 'num1': num1, 'num2': num2}
 
         return render(request, 'board/teamplayer_detail.html', context)
 
